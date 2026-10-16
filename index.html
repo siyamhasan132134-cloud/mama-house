@@ -192,5 +192,186 @@
   <p>Price: ৳100</p>
   <p>অর্ডার করতে যোগাযোগ করুন</p>
 </div>
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b100d">
+<title>Mama House | eFootball Top-Up</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#0b100d;
+  color:#fff;
+  font-family:Arial,sans-serif;
+}
+header{
+  padding:25px 15px;
+  text-align:center;
+  background:linear-gradient(135deg,#14251a,#080c09);
+  border-bottom:2px solid #b8ff45;
+}
+header h1{color:#b8ff45;margin:0 0 8px}
+header p{color:#c9d5ca;margin:0}
+.hero{
+  text-align:center;
+  padding:25px 12px;
+}
+.hero h2{color:#b8ff45}
+.hero p{color:#ccc}
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:12px;
+}
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:15px;
+}
+.card{
+  background:#141d17;
+  border:1px solid #2b4130;
+  border-radius:14px;
+  overflow:hidden;
+  text-align:center;
+  padding-bottom:16px;
+}
+.card img{
+  width:100%;
+  height:145px;
+  object-fit:cover;
+  background:#101610;
+  display:block;
+}
+.card h3{font-size:17px;margin:14px 5px 8px}
+.price{
+  color:#b8ff45;
+  font-size:22px;
+  font-weight:bold;
+  margin:10px;
+}
+button{
+  background:#b8ff45;
+  color:#101610;
+  font-weight:bold;
+  border:0;
+  border-radius:8px;
+  padding:12px 15px;
+  cursor:pointer;
+  width:85%;
+}
+button:hover{background:#d2ff83}
+.note{
+  color:#bbb;
+  font-size:12px;
+  padding:0 10px;
+}
+footer{
+  text-align:center;
+  padding:25px 12px;
+  margin-top:30px;
+  background:#141d17;
+  color:#ccc;
+}
+footer strong{color:#b8ff45}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>⚽ MAMA HOUSE</h1>
+  <p>eFootball Coins & Player Packs</p>
+</header>
+
+<section class="hero">
+  <h2>🔥 Welcome to Mama House</h2>
+  <p>আপনার পছন্দের Coins ও Player Pack অর্ডার করুন!</p>
+</section>
+
+<main class="container">
+  <div class="products">
+
+    <div class="card">
+      <img src="https://placehold.co/500x350/101610/b8ff45?text=100+COINS"
+           alt="100 eFootball Coins">
+      <h3>🪙 100 Coins</h3>
+      <div class="price">৳100</div>
+      <button onclick="order('100 Coins',100)">Buy Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://placehold.co/500x350/101610/b8ff45?text=300+COINS"
+           alt="300 eFootball Coins">
+      <h3>🪙 300 Coins</h3>
+      <div class="price">৳250</div>
+      <button onclick="order('300 Coins',250)">Buy Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://placehold.co/500x350/101610/b8ff45?text=500+COINS"
+           alt="500 eFootball Coins">
+      <h3>🪙 500 Coins</h3>
+      <div class="price">৳400</div>
+      <button onclick="order('500 Coins',400)">Buy Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://placehold.co/500x350/101610/b8ff45?text=LUIS+SUAREZ"
+           alt="Luis Suarez Player Pack">
+      <h3>⚽ Luis Suárez</h3>
+      <div class="price">৳150</div>
+      <button onclick="order('Luis Suarez Player Pack',150)">Buy Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://placehold.co/500x350/101610/b8ff45?text=IKER+CASILLAS"
+           alt="Iker Casillas Player Pack">
+      <h3>🧤 Iker Casillas</h3>
+      <div class="price">৳370</div>
+      <button onclick="order('Iker Casillas Player Pack',370)">Buy Now</button>
+    </div>
+
+  </div>
+  <p class="note">
+    নোট: ছবিগুলো আপাতত নাম লেখা নমুনা ছবি। আসল প্লেয়ার কার্ডের ছবি পরে যোগ করা যাবে।
+  </p>
+</main>
+
+<footer>
+  <p><strong>MAMA HOUSE</strong></p>
+  <p>eFootball Top-Up & Player Packs</p>
+  <p>অর্ডার করতে Buy Now বাটনে চাপ দিন।</p>
+</footer>
+
+<script>
+const whatsappNumber = "8801628368446
+
+function order(product, price) {
+  if (whatsappNumber.includes("X")) {
+    alert("প্রথমে কোডে নিজের WhatsApp নম্বর বসাতে হবে।");
+    return;
+  }
+
+  const message =
+    "আসসালামু আলাইকুম, Mama House থেকে অর্ডার করতে চাই।\n" +
+    "Product: " + product + "\n" +
+    "Price: ৳" + price;
+
+  const url =
+    "https://wa.me/" + whatsappNumber +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+}
+</script>
+
 </body>
 </html>
+
+
