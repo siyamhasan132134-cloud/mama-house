@@ -1,427 +1,213 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101610">
-  <title>Mama House | eFootball Top-Up</title>
-  <style>
-    :root { --bg:#0b100d; --panel:#141d17; --green:#b8ff45; --muted:#aab7ad; --line:#2a3a2d; }
-    * { box-sizing:border-box; }
-    body { margin:0; font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif; background:radial-gradient(ellipse at top,#1a2b1d 0%,var(--bg) 55%); color:#f5fff6; }
-    .wrap { width:min(940px,92%); margin:auto; }
-    header { padding:26px 0 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-    .brand { font-weight:900; font-size:1.35rem; letter-spacing:.3px; }
-    .brand span { color:var(--green); }
-    .pill { border:1px solid #496442; color:var(--green); padding:7px 11px; border-radius:99px; font-size:.8rem; }
-    .hero { padding:34px 0 26px; }
-    .eyebrow { color:var(--green); font-weight:700; letter-spacing:1.5px; font-size:.8rem; }
-    h1 { font-size:clamp(2.2rem,8vw,4.4rem); line-height:1.05; margin:12px 0; }
-    h1 span { color:var(--green); }
-    .lead { color:var(--muted); max-width:620px; line-height:1.7; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:25px 0; }
-    .card,.panel { background:rgba(20,29,23,.94); border:1px solid var(--line); border-radius:18px; padding:20px; }
-    .card h3 { margin:8px 0; }
-    .price { color:var(--green); font-size:1.4rem; font-weight:850; margin:10px 0; }
-    .small { color:var(--muted); font-size:.9rem; line-height:1.6; }
-    .tag { display:inline-block; color:#111; background:var(--green); border-radius:6px; padding:4px 8px; font-size:.75rem; font-weight:800; }
-    h2 { margin:0 0 16px; }
-    label { display:block; font-weight:650; margin:13px 0 6px; }
-    input,select,textarea { width:100%; background:#0b120d; color:white; border:1px solid #344737; border-radius:10px; padding:13px; font:inherit; }
-    input:focus,select:focus,textarea:focus { outline:2px solid var(--green); border-color:transparent; }
-    .two { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .paybox { border:1px dashed #496442; border-radius:12px; padding:14px; margin:15px 0; color:var(--muted); line-height:1.7; }
-    button,.btn { display:inline-block; width:100%; border:0; border-radius:11px; padding:14px 18px; background:var(--green); color:#11190d; font:inherit; font-weight:850; cursor:pointer; text-align:center; text-decoration:none; }
-    button:hover,.btn:hover { filter:brightness(1.06); }
-    .warning { font-size:.86rem; color:#e7eee8; background:#202a22; padding:12px; border-radius:10px; line-height:1.6; }
-    footer { color:var(--muted); text-align:center; padding:30px 0; font-size:.85rem; }
-    @media(max-width:560px) { .two { grid-template-columns:1fr; } header { align-items:flex-start; flex-direction:column; } .hero { padding-top:22px; } }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="brand">MAMA <span>HOUSE</span></div>
-      <div class="pill">⚽ eFootball Top-Up</div>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="eyebrow">YOUR GAMING STORE</div>
-        <h1>Level up your<br><span>eFootball game.</span></h1>
-        <p class="lead">প্যাক বেছে নাও, অর্ডার ফর্ম পূরণ করো এবং bKash/Nagad পেমেন্টের তথ্য WhatsApp-এ পাঠাও। পেমেন্ট যাচাইয়ের পর অর্ডার প্রসেস করা হবে।</p>
-      </section>
-
-      <section aria-label="প্যাকের তালিকা">
-        <h2>Featured Packs</h2>
-        <p class="small">নিচের দামগুলো নমুনা। বিক্রির আগে নিজের যাচাই করা দাম বসিয়ে নাও।</p>
-        <div class="grid">
-          <article class="card">
-            <span class="tag">COINS</span>
-            <h3>eFootball Coins</h3>
-            <p class="small">Coins প্যাক — পরিমাণ ও দাম অর্ডার ফর্মে নির্বাচন করো।</p>
-            <div class="price">দাম নিশ্চিত হবে</div>
-          </article>
-          <article class="card">
-            <span class="tag">PLAYER PACK</span>
-            <h3>Luis Suárez / Player Pack</h3>
-            <p class="small">পছন্দের Player Pack-এর নাম লিখে অর্ডার পাঠাও। প্রাপ্যতা আগে নিশ্চিত করো।</p>
-            <div class="price">দাম নিশ্চিত হবে</div>
-          </article>
-          <article class="card">
-            <span class="tag">CUSTOM</span>
-            <h3>Custom Order</h3>
-            <p class="small">অন্য প্যাক চাইলে নাম ও পরিমাণ লিখে পাঠাও।</p>
-            <div class="price">আগে কনফার্ম করো</div>
-          </article>
-        </div>
-      </section>
-
-      <section class="panel" id="order">
-        <h2>অর্ডার করো</h2>
-        <form id="orderForm">
-          <label for="playerId">eFootball Player ID</label>
-          <input id="playerId" name="playerId" required maxlength="40" placeholder="তোমার Player ID">
-
-          <div class="two">
-            <div>
-              <label for="platform">প্ল্যাটফর্ম</label>
-              <select id="platform" name="platform" required>
-                <option value="Android">Android</option>
-                <option value="iOS">iOS</option>
-                <option value="PlayStation">PlayStation</option>
-                <option value="Xbox">Xbox</option>
-                <option value="PC">PC</option>
-              </select>
-            </div>
-            <div>
-              <label for="pack">প্যাক</label>
-              <select id="pack" name="pack" required>
-                <option value="eFootball Coins">eFootball Coins</option>
-                <option value="Luis Suárez / Player Pack">Luis Suárez / Player Pack</option>
-                <option value="Custom Pack">Custom Pack</option>
-              </select>
-            </div>
-          </div>
-
-          <label for="details">প্যাকের পরিমাণ / বিস্তারিত</label>
-          <input id="details" name="details" required maxlength="100" placeholder="যেমন: প্যাকের নাম বা Coins পরিমাণ">
-
-          <div class="two">
-            <div>
-              <label for="payment">পেমেন্ট পদ্ধতি</label>
-              <select id="payment" name="payment" required>
-                <option value="bKash">bKash</option>
-                <option value="Nagad">Nagad</option>
-              </select>
-            </div>
-            <div>
-              <label for="amount">পেমেন্টের পরিমাণ (৳)</label>
-              <input id="amount" name="amount" required inputmode="numeric" type="number" min="1" placeholder="যেমন: 250">
-            </div>
-          </div>
-
-          <label for="trx">Transaction ID (পেমেন্ট করার পর)</label>
-          <input id="trx" name="trx" maxlength="80" placeholder="পেমেন্টের পরে লিখবে">
-
-          <label for="note">অতিরিক্ত তথ্য (ঐচ্ছিক)</label>
-          <textarea id="note" name="note" rows="3" maxlength="300" placeholder="কোনো প্রশ্ন থাকলে লিখো"></textarea>
-
-          <div class="paybox">
-            <strong>পেমেন্টের আগে:</strong><br>
-            বিক্রেতার কাছ থেকে নিশ্চিত করা bKash/Nagad নম্বরে পেমেন্ট করো। নিচের কোডে নিজের ব্যবসার নম্বর ও WhatsApp নম্বর বসাও। পেমেন্টের রসিদ/Transaction ID যাচাই না করে অর্ডার নিশ্চিত কোরো না।
-          </div>
-
-          <p class="warning">নিরাপত্তা: কখনো Konami password, email password, OTP বা verification code দেবে না। শুধু প্রয়োজনীয় Player ID ব্যবহার করো। অর্ডার পাঠালে WhatsApp খুলবে; পাঠানোর আগে তথ্য নিজে দেখে নেবে।</p>
-          <button type="submit">WhatsApp-এ অর্ডার পাঠাও</button>
-        </form>
-      </section>
-    </main>
-    <footer>© <span id="year"></span> Mama House · Independent fan shop; not affiliated with KONAMI.</footer>
-  </div>
-
-  <script>
-    // TODO: নিজের WhatsApp নম্বর বসাও: দেশের কোডসহ, + ছাড়া। উদাহরণ: 8801XXXXXXXXX
-    const WHATSAPP_NUMBER = "8801628368446";
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("orderForm").addEventListener("submit", function (event) {
-      event.preventDefault();
-      if (WHATSAPP_NUMBER.includes("X")) {
-        alert("প্রথমে কোডের WHATSAPP_NUMBER-এ নিজের WhatsApp নম্বর বসাও।");
-        return;
-      }
-
-      const get = id => document.getElementById(id).value.trim();
-      const message = [
-        "🟢 *Mama House — eFootball Top-Up Order*",
-        "",
-        "*Player ID:* " + get("playerId"),
-        "*Platform:* " + get("platform"),
-        "*Pack:* " + get("pack"),
-        "*Pack details:* " + get("details"),
-        "*Payment method:* " + get("payment"),
-        "*Amount:* ৳" + get("amount"),
-        "*Transaction ID:* " + (get("trx") || "পেমেন্টের পরে জানাব"),
-        "*Note:* " + (get("note") || "নেই"),
-        "",
-        "অনুগ্রহ করে পেমেন্ট ও প্যাকের প্রাপ্যতা যাচাই করুন।"
-      ].join("\n");
-
-      window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message), "_blank", "noopener");
-    });
-  </script>
-
-<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:20px 0;">
-  <div style="background:#141d17;padding:12px;border-radius:12px;text-align:center;color:white;">
-    <img src="https://placehold.co/300x200/101610/b8ff45?text=Luis+Suarez" alt="Luis Suarez" style="width:100%;max-width:240px;border-radius:8px;">
-    <h3>Luis Suarez</h3>
-    <p>eFootball Player Pack</p>
-  </div>
-  <div style="background:#141d17;padding:12px;border-radius:12px;text-align:center;color:white;">
-    <img src="https://placehold.co/300x200/101610/b8ff45?text=eFootball+Packs" alt="eFootball Packs" style="width:100%;max-width:240px;border-radius:8px;">
-    <h3>Player Packs</h3>
-    <p>Mama House Top-Up</p>
-  </div>
-</div>
-<div style="background:#141d17;color:white;padding:15px;border-radius:12px;text-align:center;margin:15px 0;">
-  <img src="https://placehold.co/300x180/101610/b8ff45?text=eFootball+Coins"
-       alt="eFootball Coins"
-       style="width:100%;max-width:300px;border-radius:10px;">
-  <h3>eFootball Coins</h3>
-  <p>Price: ৳100</p>
-  <p>অর্ডার করতে যোগাযোগ করুন</p>
-</div>
-
-<!DOCTYPE html>
-<html lang="bn">
-<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b100d">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101610">
 <title>Mama House | eFootball Top-Up</title>
-a {
-  color: #b8ff45;
-  text-decoration: none;
-}
 
-a:visited {
-  color: #b8ff45;
-a {
-  color: #b8ff45;
-  text-decoration: none;
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:#0b100d;
-  color:#fff;
-  font-family:Arial,sans-serif;
-}
-header{
-  padding:25px 15px;
-  text-align:center;
-  background:linear-gradient(135deg,#14251a,#080c09);
-  border-bottom:2px solid #b8ff45;
-}
-header h1{color:#b8ff45;margin:0 0 8px}
-header p{color:#c9d5ca;margin:0}
-.hero{
-  text-align:center;
-  padding:25px 12px;
-}
-.hero h2{color:#b8ff45}
-.hero p{color:#ccc}
-.container{
-  max-width:1000px;
-  margin:auto;
-  padding:12px;
-}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
-  gap:15px;
-}
-.card{
-  background:#141d17;
-  border:1px solid #2b4130;
-  border-radius:14px;
-  overflow:hidden;
-  text-align:center;
-  padding-bottom:16px;
-}
-.card img{
-  width:100%;
-  height:145px;
-  object-fit:cover;
-  background:#101610;
-  display:block;
-}
-.card h3{font-size:17px;margin:14px 5px 8px}
-.price{
-  color:#b8ff45;
-  font-size:22px;
-  font-weight:bold;
-  margin:10px;
-}
-button{
-  background:#b8ff45;
-  color:#101610;
-  font-weight:bold;
-  border:0;
-  border-radius:8px;
-  padding:12px 15px;
-  cursor:pointer;
-  width:85%;
-}
-button:hover{background:#d2ff83}
-.note{
-  color:#bbb;
-  font-size:12px;
-  padding:0 10px;
-}
-footer{
-  text-align:center;
-  padding:25px 12px;
-  margin-top:30px;
-  background:#141d17;
-  color:#ccc;
-}
-footer strong{color:#b8ff45}
+:root{--bg:#0b100d;--panel:#141d17;--green:#b8ff45;--muted:#aab7ad;--line:#2a3a2d}
+body{margin:0;background:radial-gradient(ellipse at top,#1a2b1d,var(--bg) 65%);color:#f5fff6;font-family:Arial,sans-serif}
+.wrap{width:92%;max-width:1000px;margin:auto}
+header{text-align:center;padding:24px 0;border-bottom:1px solid var(--line)}
+header h1{margin:0;font-size:29px}
+header span,.hero span,footer strong{color:var(--green)}
+header p{color:var(--muted)}
+.hero{text-align:center;padding:25px 0}
+.hero h2{font-size:clamp(25px,6vw,38px);margin:10px 0}
+.hero p{color:var(--muted);line-height:1.7}
+.section-title{margin:24px 0 14px}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
+.card{min-width:0;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px;text-align:center;display:flex;flex-direction:column}
+.tag{align-self:center;color:var(--green);border:1px solid #496442;border-radius:20px;padding:4px 9px;font-size:11px}
+.coin-icon{font-size:48px;padding:12px 0}
+.card img{width:100%;height:155px;object-fit:contain;background:#101610;border-radius:9px}
+.card h3{font-size:16px;margin:12px 0 5px}
+.price{color:var(--green);font-size:17px;font-weight:800;margin:8px 0 13px}
+.buy-btn{display:block;width:100%;margin-top:auto;padding:10px 5px;background:var(--green);color:#101610;border:0;border-radius:8px;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer}
+.buy-btn:hover{background:#d2ff83}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:17px;margin:25px 0}
+label{display:block;margin:12px 0 6px;font-weight:bold}
+input,select,textarea{width:100%;padding:12px;border:1px solid #344737;border-radius:9px;background:#0b120d;color:white;font:inherit}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.notice{background:#202a22;padding:12px;border-radius:10px;font-size:13px;line-height:1.7;margin:15px 0;color:#e7eee8}
+footer{text-align:center;padding:25px 10px;margin-top:30px;background:var(--panel);color:#ccc;font-size:13px}
+@media(min-width:650px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.card img{height:180px}}
+@media(max-width:360px){.products,.two{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
+<div class="wrap">
 
 <header>
-  <h1>⚽ MAMA HOUSE</h1>
-  <p>eFootball Coins & Player Packs</p>
+<h1>⚽ MAMA <span>HOUSE</span></h1>
+<p>eFootball Coins &amp; Player Packs</p>
 </header>
 
+<main>
 <section class="hero">
-  <h2>🔥 Welcome to Mama House</h2>
-  <p>আপনার পছন্দের Coins ও Player Pack অর্ডার করুন!</p>
+<h2>🔥 Welcome to <span>Mama House</span></h2>
+<p>আপনার পছন্দের Coins ও Player Pack বেছে নিন এবং WhatsApp-এ অর্ডার করুন!</p>
 </section>
 
-<main class="container">
-  
+<h2 class="section-title">🛒 Our Products</h2>
+
 <div class="products">
 
-  <!-- 100 Coins -->
-  <div class="card">
-    <div class="card">
-  <div style="font-size:75px; text-align:center; padding:15px;">
-    🪙
-  </div>
-  <h3>🪙 100 Coins</h3>
-  <p>Price: ৳100</p>
+<article class="card">
+<span class="tag">COINS</span>
+<div class="coin-icon">🪙</div>
+<h3>100 Coins</h3>
+<div class="price">৳100</div>
+<button class="buy-btn" onclick="order('100 Coins',100)">Buy Now</button>
+</article>
+
+<article class="card">
+<span class="tag">COINS</span>
+<div class="coin-icon">🪙</div>
+<h3>300 Coins</h3>
+<div class="price">৳250</div>
+<button class="buy-btn" onclick="order('300 Coins',250)">Buy Now</button>
+</article>
+
+<article class="card">
+<span class="tag">COINS</span>
+<div class="coin-icon">🪙</div>
+<h3>500 Coins</h3>
+<div class="price">৳400</div>
+<button class="buy-btn" onclick="order('500 Coins',400)">Buy Now</button>
+</article>
+
+<article class="card">
+<span class="tag">PLAYER PACK</span>
+<img src="https://pbs.twimg.com/media/GZgS2dcWIAAtbwi.jpg" alt="Luis Suarez" loading="lazy">
+<h3>Luis Suárez</h3>
+<div class="price">৳150</div>
+<button class="buy-btn" onclick="order('Luis Suarez Player Pack',150)">Buy Now</button>
+</article>
+
+<article class="card">
+<span class="tag">PLAYER PACK</span>
+<img src="https://pbs.twimg.com/media/GLk7FD4WgAA6fbE.jpg" alt="Iker Casillas" loading="lazy">
+<h3>Iker Casillas</h3>
+<div class="price">৳370</div>
+<button class="buy-btn" onclick="order('Iker Casillas Player Pack',370)">Buy Now</button>
+</article>
+
 </div>
 
-<div class="card">
-  <div style="font-size:75px; text-align:center; padding:15px;">
-    🪙
-  </divdi 
-<div class="card">
-  <div style="font-size:75px; text-align:center; padding:15px;">
-    🪙
-  
-<div class="card">
-  <div style="font-size:55px; text-align:center; padding:10px;">
-    🪙
-  </div>
+<section class="panel" id="order">
+<h2>📝 Custom Order</h2>
+<p style="color:var(--muted)">অন্য প্যাক অর্ডার করতে ফর্ম পূরণ করুন।</p>
 
-  <!-- 300 Coins -->
-<div class="card">
-  <div style="font-size:42px; text-align:center; padding:6px;">
-    🪙
-  </div>
+<form id="orderForm">
+<label for="playerId">eFootball Player ID</label>
+<input id="playerId" required maxlength="40" placeholder="তোমার Player ID">
 
-  <h3 style="font-size:18px; margin:8px 0;">
-    300 Coins
-  </h3>
-
-  <p style="font-size:14px; margin:6px 0;">
-    Price: ৳250
-  </p>
-
-  <a href="https://wa.me/8801628368446 text=I%20want%20to%20buy%20300%20Coins%20for%20250%20BDT"
-     target="_blank"
-     rel="noopener noreferrer"
-     style="display:block; background:#b8ff45; color:#101610;
-     padding:9px; border-radius:8px; text-align:center;
-     text-decoration:none; font-weight:bold; font-size:14px;">
-    Buy Now
-  </a>
+<div class="two">
+<div>
+<label for="platform">প্ল্যাটফর্ম</label>
+<select id="platform">
+<option>Android</option>
+<option>iOS</option>
+<option>PlayStation</option>
+<option>Xbox</option>
+<option>PC</option>
+</select>
 </div>
-  </a>
+<div>
+<label for="pack">প্যাক</label>
+<select id="pack">
+<option>100 Coins</option>
+<option>300 Coins</option>
+<option>500 Coins</option>
+<option>Luis Suarez Player Pack</option>
+<option>Iker Casillas Player Pack</option>
+<option>Custom Pack</option>
+</select>
+</div>
 </div>
 
-<dig  class="card">
-  <div style="font-size:75px; text-align:center; padding:15px;">
-    🪙
-  </div>
-  <h3>🪙 500 Coins</h3>
-  <p>Price: ৳400</p>
-  <a href="https://wa.me/8801628368446?text=I%20want%20to%20buy%20500%20Coins"
-     style="display:block;background:#b8ff45;color:#101610;padding:12px;border-radius:8px;text-align:center;text-decoration:none;font-weight:bold;">
-    Buy Now
-  </a>
-</div>
-<a href="https://wa.me/8801628368446
-style="display:block;background:#b8ff45;color:#101610;
-padding:12px;border-radius:8px;text-align:center;
-text-decoration:none;font-weight:bold;">
-Buy Now
-</div>
+<label for="details">প্যাকের বিস্তারিত</label>
+<input id="details" required maxlength="100" placeholder="প্যাকের নাম বা পরিমাণ">
 
-<!-- Luis Suarez -->
-<div class="card">
-  <img src="https://pbs.twimg.com/media/GZgS2dcWIAAtbwi.jpg"
-       alt="Luis Suarez">
-  <h3>⚽ Luis Suárez</h3>
-  <div class="price">৳150</div>
-  <button onclick="order('Luis Suarez Player Pack',150)">Buy Now</button>
+<div class="two">
+<div>
+<label for="payment">পেমেন্ট পদ্ধতি</label>
+<select id="payment">
+<option>bKash</option>
+<option>Nagad</option>
+</select>
+</div>
+<div>
+<label for="amount">পরিমাণ (৳)</label>
+<input id="amount" type="number" min="1" required placeholder="যেমন 250">
+</div>
 </div>
 
-<!-- Iker Casillas -->
-<div class="card">
-  <img src="https://pbs.twimg.com/media/GLk7FD4WgAA6fbE.jpg"
-       alt="Iker Casillas">
-  <h3>🧤 Iker Casillas</h3>
-  <div class="price">৳370</div>
-  <button onclick="order('Iker Casillas Player Pack',370)">Buy Now</button>
-</div>
+<label for="trx">Transaction ID (ঐচ্ছিক)</label>
+<input id="trx" maxlength="80" placeholder="পেমেন্টের পর লিখবে">
 
+<label for="note">অতিরিক্ত তথ্য (ঐচ্ছিক)</label>
+<textarea id="note" rows="3" maxlength="300" placeholder="কোনো প্রশ্ন থাকলে লিখো"></textarea>
 
-  <p class="note">
-    নোট: ছবিগুলো আপাতত নাম লেখা নমুনা ছবি। আসল প্লেয়ার কার্ডের ছবি পরে যোগ করা যাবে।
-  </p>
+<div class="notice">সতর্কতা: কখনো Konami password, email password বা OTP শেয়ার করবে না। পেমেন্টের আগে বিক্রেতার নম্বর নিশ্চিত করবে।</div>
+
+<button type="submit" class="buy-btn">WhatsApp-এ অর্ডার পাঠাও</button>
+</form>
+</section>
 </main>
 
 <footer>
-  <p><strong>MAMA HOUSE</strong></p>
-  <p>eFootball Top-Up & Player Packs</p>
-  <p>অর্ডার করতে Buy Now বাটনে চাপ দিন।</p>
+<p><strong>MAMA HOUSE</strong></p>
+<p>eFootball Top-Up &amp; Player Packs</p>
+<p>© <span id="year"></span> Mama House</p>
+<p>Independent fan shop; not affiliated with KONAMI.</p>
 </footer>
+
+</div>
+
 <script>
 const whatsappNumber = "8801628368446";
 
-function order(product, price) {
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function openWhatsApp(message){
+  const url = "https://wa.me/" + whatsappNumber +
+    "?text=" + encodeURIComponent(message);
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+function order(product, price){
   const message =
     "Assalamu Alaikum, Mama House!\n" +
     "আমি অর্ডার করতে চাই।\n" +
     "Product: " + product + "\n" +
     "Price: ৳" + price;
 
-  const url = "https://wa.me/" + whatsappNumber +
-    "?text=" + encodeURIComponent(message);
-
-  window.location.href = url;
+  openWhatsApp(message);
 }
+
+document.getElementById("orderForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const message =
+    "Assalamu Alaikum, Mama House!\n" +
+    "Player ID: " + document.getElementById("playerId").value + "\n" +
+    "Platform: " + document.getElementById("platform").value + "\n" +
+    "Pack: " + document.getElementById("pack").value + "\n" +
+    "Details: " + document.getElementById("details").value + "\n" +
+    "Payment: " + document.getElementById("payment").value + "\n" +
+    "Amount: ৳" + document.getElementById("amount").value + "\n" +
+    "Transaction ID: " + document.getElementById("trx").value + "\n" +
+    "Note: " + document.getElementById("note").value;
+
+  openWhatsApp(message);
+});
 </script>
 
 </body>
 </html>
-
-
-
