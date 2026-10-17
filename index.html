@@ -355,30 +355,25 @@ footer strong{color:#b8ff45}
   <p>eFootball Top-Up & Player Packs</p>
   <p>অর্ডার করতে Buy Now বাটনে চাপ দিন।</p>
 </footer>
-
 <script>
-const whatsappNumber = "8801628368446
+const whatsappNumber = "8801628368446";
 
 function order(product, price) {
-  if (whatsappNumber.includes("X")) {
-    alert("প্রথমে কোডে নিজের WhatsApp নম্বর বসাতে হবে।");
-    return;
-  }
-
   const message =
-    "আসসালামু আলাইকুম, Mama House থেকে অর্ডার করতে চাই।\n" +
+    "Assalamu Alaikum, Mama House!\n" +
+    "আমি অর্ডার করতে চাই।\n" +
     "Product: " + product + "\n" +
     "Price: ৳" + price;
 
-  const url =
-    "https://wa.me/" + whatsappNumber +
+  const url = "https://wa.me/" + whatsappNumber +
     "?text=" + encodeURIComponent(message);
 
-  window.open(url, "_blank");
+  window.location.href = url;
 }
 </script>
 
 </body>
 </html>
+
 
 
