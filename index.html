@@ -15,10 +15,10 @@ body{margin:0;background:radial-gradient(ellipse at top,#1a2b1d,var(--bg) 65%);c
 header{text-align:center;padding:24px 0;border-bottom:1px solid var(--line)}
 header h1{margin:0;font-size:29px}
 header span,.hero span,footer strong{color:var(--green)}
-header p{color:var(--muted)}
+header p,.hero p{color:var(--muted)}
 .hero{text-align:center;padding:25px 0}
 .hero h2{font-size:clamp(25px,6vw,38px);margin:10px 0}
-.hero p{color:var(--muted);line-height:1.7}
+.hero p{line-height:1.7}
 .section-title{margin:24px 0 14px}
 .products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
 .card{min-width:0;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px;text-align:center;display:flex;flex-direction:column}
@@ -32,6 +32,7 @@ header p{color:var(--muted)}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:17px;margin:25px 0}
 label{display:block;margin:12px 0 6px;font-weight:bold}
 input,select,textarea{width:100%;padding:12px;border:1px solid #344737;border-radius:9px;background:#0b120d;color:white;font:inherit}
+input::placeholder,textarea::placeholder{color:#828982}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .notice{background:#202a22;padding:12px;border-radius:10px;font-size:13px;line-height:1.7;margin:15px 0;color:#e7eee8}
 footer{text-align:center;padding:25px 10px;margin-top:30px;background:var(--panel);color:#ccc;font-size:13px}
@@ -42,6 +43,7 @@ footer{text-align:center;padding:25px 10px;margin-top:30px;background:var(--pane
 
 <body>
 <div class="wrap">
+
 <header>
 <h1>⚽ MAMA <span>HOUSE</span></h1>
 <p>eFootball Coins &amp; Player Packs</p>
@@ -54,6 +56,7 @@ footer{text-align:center;padding:25px 10px;margin-top:30px;background:var(--pane
 </section>
 
 <h2 class="section-title">🛒 Our Products</h2>
+
 <div class="products">
 
 <article class="card">
@@ -100,17 +103,26 @@ footer{text-align:center;padding:25px 10px;margin-top:30px;background:var(--pane
 
 <section class="panel" id="order">
 <h2>📝 Custom Order</h2>
-<p style="color:var(--muted)">অন্য প্যাক অর্ডার করতে ফর্ম পূরণ করুন।</p>
+<p style="color:var(--muted)">অর্ডারের জন্য নিচের ফর্ম পূরণ করুন।</p>
 
 <form id="orderForm">
-<label for="playerId">eFootball Player ID</label>
-<input id="playerId" required maxlength="40" placeholder="তোমার Player ID">
 
-<!-- নতুন Gmail ID অপশন -->
+<label for="playerId">eFootball Player ID</label>
+<input id="playerId" required maxlength="60"
+placeholder="তোমার Player ID">
+
 <label for="gmail">📧 Gmail ID (ঐচ্ছিক)</label>
 <input id="gmail" type="email" maxlength="120"
-placeholder="আপনার Gmail address"
+placeholder="Customer Gmail address"
 autocomplete="email">
+
+<label for="konamiId">🎮 Konami ID (ঐচ্ছিক)</label>
+<input id="konamiId" maxlength="120"
+placeholder="Customer Konami ID">
+
+<label for="phone">📱 ফোন নম্বর</label>
+<input id="phone" type="tel" maxlength="20"
+placeholder="01XXXXXXXXX" autocomplete="tel">
 
 <div class="two">
 <div>
@@ -123,6 +135,7 @@ autocomplete="email">
 <option>PC</option>
 </select>
 </div>
+
 <div>
 <label for="pack">প্যাক</label>
 <select id="pack">
@@ -137,7 +150,8 @@ autocomplete="email">
 </div>
 
 <label for="details">প্যাকের বিস্তারিত</label>
-<input id="details" required maxlength="100" placeholder="প্যাকের নাম বা পরিমাণ">
+<input id="details" required maxlength="100"
+placeholder="প্যাকের নাম বা পরিমাণ">
 
 <div class="two">
 <div>
@@ -147,24 +161,31 @@ autocomplete="email">
 <option>Nagad</option>
 </select>
 </div>
+
 <div>
 <label for="amount">পরিমাণ (৳)</label>
-<input id="amount" type="number" min="1" required placeholder="যেমন 250">
+<input id="amount" type="number" min="1"
+required placeholder="যেমন 250">
 </div>
 </div>
 
 <label for="trx">Transaction ID (ঐচ্ছিক)</label>
-<input id="trx" maxlength="80" placeholder="পেমেন্টের পর লিখবে">
+<input id="trx" maxlength="80"
+placeholder="পেমেন্টের পর লিখবে">
 
 <label for="note">অতিরিক্ত তথ্য (ঐচ্ছিক)</label>
-<textarea id="note" rows="3" maxlength="300" placeholder="কোনো প্রশ্ন থাকলে লিখো"></textarea>
+<textarea id="note" rows="3" maxlength="300"
+placeholder="কোনো প্রশ্ন থাকলে লিখো"></textarea>
 
 <div class="notice">
-সতর্কতা: Gmail Password, Konami Password বা OTP কখনো শেয়ার করবেন না।
-পেমেন্টের আগে বিক্রেতার নম্বর নিশ্চিত করুন।
+🔐 নিরাপত্তা: Gmail Password, Konami Password বা OTP দেবেন না।
+অর্ডার দেওয়ার আগে প্যাক ও পেমেন্টের তথ্য যাচাই করুন।
 </div>
 
-<button type="submit" class="buy-btn">WhatsApp-এ অর্ডার পাঠাও</button>
+<button type="submit" class="buy-btn">
+WhatsApp-এ অর্ডার পাঠাও
+</button>
+
 </form>
 </section>
 </main>
@@ -175,6 +196,7 @@ autocomplete="email">
 <p>© <span id="year"></span> Mama House</p>
 <p>Independent fan shop; not affiliated with KONAMI.</p>
 </footer>
+
 </div>
 
 <script>
@@ -186,7 +208,8 @@ document.getElementById("year").textContent =
 function openWhatsApp(message){
   const url = "https://wa.me/" + whatsappNumber +
     "?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
+
+  window.location.href = url;
 }
 
 function order(product, price){
@@ -202,22 +225,26 @@ function order(product, price){
 document.getElementById("orderForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  const gmail = document.getElementById("gmail").value.trim();
+  const get = id => document.getElementById(id).value.trim();
 
   const message =
     "Assalamu Alaikum, Mama House!\n" +
-    "Player ID: " + document.getElementById("playerId").value + "\n" +
-    "Gmail ID: " + (gmail || "দেওয়া হয়নি") + "\n" +
-    "Platform: " + document.getElementById("platform").value + "\n" +
-    "Pack: " + document.getElementById("pack").value + "\n" +
-    "Details: " + document.getElementById("details").value + "\n" +
-    "Payment: " + document.getElementById("payment").value + "\n" +
-    "Amount: ৳" + document.getElementById("amount").value + "\n" +
-    "Transaction ID: " + (document.getElementById("trx").value || "দেওয়া হয়নি") + "\n" +
-    "Note: " + (document.getElementById("note").value || "নেই");
+    "🛒 NEW ORDER\n\n" +
+    "Player ID: " + get("playerId") + "\n" +
+    "Gmail ID: " + (get("gmail") || "দেওয়া হয়নি") + "\n" +
+    "Konami ID: " + (get("konamiId") || "দেওয়া হয়নি") + "\n" +
+    "Phone: " + (get("phone") || "দেওয়া হয়নি") + "\n" +
+    "Platform: " + get("platform") + "\n" +
+    "Pack: " + get("pack") + "\n" +
+    "Details: " + get("details") + "\n" +
+    "Payment: " + get("payment") + "\n" +
+    "Amount: ৳" + get("amount") + "\n" +
+    "Transaction ID: " + (get("trx") || "দেওয়া হয়নি") + "\n" +
+    "Note: " + (get("note") || "নেই");
 
   openWhatsApp(message);
 });
 </script>
+
 </body>
 </html>
