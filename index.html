@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -26,7 +27,7 @@ header p{color:var(--muted)}
 .card img{width:100%;height:155px;object-fit:contain;background:#101610;border-radius:9px}
 .card h3{font-size:16px;margin:12px 0 5px}
 .price{color:var(--green);font-size:17px;font-weight:800;margin:8px 0 13px}
-.buy-btn{display:block;width:100%;margin-top:auto;padding:10px 5px;background:var(--green);color:#101610;border:0;border-radius:8px;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer}
+.buy-btn{display:block;width:100%;margin-top:auto;padding:12px 5px;background:var(--green);color:#101610;border:0;border-radius:8px;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer}
 .buy-btn:hover{background:#d2ff83}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:17px;margin:25px 0}
 label{display:block;margin:12px 0 6px;font-weight:bold}
@@ -41,7 +42,6 @@ footer{text-align:center;padding:25px 10px;margin-top:30px;background:var(--pane
 
 <body>
 <div class="wrap">
-
 <header>
 <h1>⚽ MAMA <span>HOUSE</span></h1>
 <p>eFootball Coins &amp; Player Packs</p>
@@ -54,7 +54,6 @@ footer{text-align:center;padding:25px 10px;margin-top:30px;background:var(--pane
 </section>
 
 <h2 class="section-title">🛒 Our Products</h2>
-
 <div class="products">
 
 <article class="card">
@@ -107,6 +106,12 @@ footer{text-align:center;padding:25px 10px;margin-top:30px;background:var(--pane
 <label for="playerId">eFootball Player ID</label>
 <input id="playerId" required maxlength="40" placeholder="তোমার Player ID">
 
+<!-- নতুন Gmail ID অপশন -->
+<label for="gmail">📧 Gmail ID (ঐচ্ছিক)</label>
+<input id="gmail" type="email" maxlength="120"
+placeholder="আপনার Gmail address"
+autocomplete="email">
+
 <div class="two">
 <div>
 <label for="platform">প্ল্যাটফর্ম</label>
@@ -154,7 +159,10 @@ footer{text-align:center;padding:25px 10px;margin-top:30px;background:var(--pane
 <label for="note">অতিরিক্ত তথ্য (ঐচ্ছিক)</label>
 <textarea id="note" rows="3" maxlength="300" placeholder="কোনো প্রশ্ন থাকলে লিখো"></textarea>
 
-<div class="notice">সতর্কতা: কখনো Konami password, email password বা OTP শেয়ার করবে না। পেমেন্টের আগে বিক্রেতার নম্বর নিশ্চিত করবে।</div>
+<div class="notice">
+সতর্কতা: Gmail Password, Konami Password বা OTP কখনো শেয়ার করবেন না।
+পেমেন্টের আগে বিক্রেতার নম্বর নিশ্চিত করুন।
+</div>
 
 <button type="submit" class="buy-btn">WhatsApp-এ অর্ডার পাঠাও</button>
 </form>
@@ -167,18 +175,18 @@ footer{text-align:center;padding:25px 10px;margin-top:30px;background:var(--pane
 <p>© <span id="year"></span> Mama House</p>
 <p>Independent fan shop; not affiliated with KONAMI.</p>
 </footer>
-
 </div>
 
 <script>
 const whatsappNumber = "8801628368446";
 
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent =
+  new Date().getFullYear();
 
 function openWhatsApp(message){
   const url = "https://wa.me/" + whatsappNumber +
     "?text=" + encodeURIComponent(message);
-  window.open(url, "_blank", "noopener,noreferrer");
+  window.open(url, "_blank");
 }
 
 function order(product, price){
@@ -194,20 +202,22 @@ function order(product, price){
 document.getElementById("orderForm").addEventListener("submit", function(e){
   e.preventDefault();
 
+  const gmail = document.getElementById("gmail").value.trim();
+
   const message =
     "Assalamu Alaikum, Mama House!\n" +
     "Player ID: " + document.getElementById("playerId").value + "\n" +
+    "Gmail ID: " + (gmail || "দেওয়া হয়নি") + "\n" +
     "Platform: " + document.getElementById("platform").value + "\n" +
     "Pack: " + document.getElementById("pack").value + "\n" +
     "Details: " + document.getElementById("details").value + "\n" +
     "Payment: " + document.getElementById("payment").value + "\n" +
     "Amount: ৳" + document.getElementById("amount").value + "\n" +
-    "Transaction ID: " + document.getElementById("trx").value + "\n" +
-    "Note: " + document.getElementById("note").value;
+    "Transaction ID: " + (document.getElementById("trx").value || "দেওয়া হয়নি") + "\n" +
+    "Note: " + (document.getElementById("note").value || "নেই");
 
   openWhatsApp(message);
 });
 </script>
-
 </body>
 </html>
